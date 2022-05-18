@@ -1,6 +1,6 @@
 {{page-title "Aanwezigheden"}}
 
-
+<h2>Repetities</h2>
 <form {{on "submit" this.createEvent}}>
   <label for="event-name">Naam</label>
   <input
@@ -23,14 +23,23 @@
     value={{this.time}}
     {{on "input" this.setEventTime}} />
 
-  <button type="submit">
+  <button type="submit" disabled={{this.isInvalid}}>
     Toevoegen
   </button>
 </form>
 
 <ul>
-  {{#each @model as |event|}}
+  {{#each @model.events as |event|}}
     <li>{{event.name}} {{event.startDate}}</li>
+  {{/each}}
+</ul>
+
+<hr />
+
+<h2>Muzikanten</h2>
+<ul>
+  {{#each @model.persons as |person|}}
+    <li>{{person.givenName}} {{person.familyName}}</li>
   {{/each}}
 </ul>
 

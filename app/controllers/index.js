@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { isPresent } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 
 export default class IndexController extends Controller {
   @service store;
@@ -12,8 +12,8 @@ export default class IndexController extends Controller {
   @tracked date;
   @tracked time;
 
-  get isValid() {
-    return isPresent(this.name) && isPresent(this.date) && isPresent(this.time);
+  get isInvalid() {
+    return isEmpty(this.name) && isEmpty(this.date) && isEmpty(this.time);
   }
 
   @action
@@ -25,7 +25,9 @@ export default class IndexController extends Controller {
     });
     await event.save();
 
-    this.router.refresh();
+    // TODO create attendances for all persons
+
+    this.router.transitionTo('event', event.id);
   }
 
   @action

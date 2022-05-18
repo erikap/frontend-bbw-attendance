@@ -9,13 +9,22 @@ export default class IndexRoute extends Route {
     this.session.requireAuthentication(transition, 'login');
   }
 
-  model() {
-    return this.store.query('event', {
+  async model() {
+    const events = await this.store.query('event', {
       sort: '-start-date',
       page: {
         size: 100,
       },
     });
+
+    const persons = await this.store.query('person', {
+      sort: 'family-name,given-name',
+      page: {
+        size: 100,
+      },
+    });
+
+    return { events, persons };
   }
 
   setupController(controller) {
