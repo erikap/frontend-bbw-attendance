@@ -68,5 +68,8 @@
   },
   "ember": {
     "edition": "octane"
+  },
+  "dependencies": {
+    "ember-mu-transform-helpers": "^2.1.2"
   }
 }
