@@ -1,2 +1,37 @@
-{{page-title "Index"}}
+{{page-title "Aanwezigheden"}}
+
+
+<form {{on "submit" this.createEvent}}>
+  <label for="event-name">Naam</label>
+  <input
+    id="event-name"
+    type="text"
+    value={{this.name}}
+    {{on "input" this.setEventName}} />
+
+  <label for="event-date">Datum</label>
+  <input
+    id="event-date"
+    type="date"
+    value={{this.date}}
+    {{on "input" this.setEventDate}} />
+
+  <label for="event-time">Tijdstip</label>
+  <input
+    id="event-time"
+    type="time"
+    value={{this.time}}
+    {{on "input" this.setEventTime}} />
+
+  <button type="submit">
+    Toevoegen
+  </button>
+</form>
+
+<ul>
+  {{#each @model as |event|}}
+    <li>{{event.name}} {{event.startDate}}</li>
+  {{/each}}
+</ul>
+
 {{outlet}}
