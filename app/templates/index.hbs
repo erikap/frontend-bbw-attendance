@@ -30,7 +30,11 @@
 
 <ul>
   {{#each @model.events as |event|}}
-    <li>{{event.name}} {{event.startDate}}</li>
+    <li>
+      <LinkTo @route="event" @model={{event.id}}>
+        {{event.name}} {{format-date event.startDate "Pp"}}
+      </LinkTo>
+    </li>
   {{/each}}
 </ul>
 

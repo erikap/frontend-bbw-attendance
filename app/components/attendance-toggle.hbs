@@ -1,0 +1,11 @@
+<div>
+  {{@attendance.person.givenName}} {{@attendance.person.familyName}}
+</div>
+<div>
+  Aanwezig:
+  <button type="button" {{on "click" this.togglePresence}}>Ja</button>
+  <button type="button" {{on "click" this.toggleAbsence}}>Nee</button>
+  {{@attendance.status}}
+</div>
+
+  {{yield}}

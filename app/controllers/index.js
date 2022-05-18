@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { STATUS_UNDEFINED } from '../models/attendance';
 
 export default class IndexController extends Controller {
   @service store;
@@ -25,7 +26,16 @@ export default class IndexController extends Controller {
     });
     await event.save();
 
-    // TODO create attendances for all persons
+    await Promise.all(
+      this.model.persons.map((person) => {
+        const attendance = this.store.createRecord('attendance', {
+          status: STATUS_UNDEFINED,
+          person: person,
+          event: event,
+        });
+        return attendance.save();
+      })
+    );
 
     this.router.transitionTo('event', event.id);
   }

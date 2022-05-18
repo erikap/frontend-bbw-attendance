@@ -1,0 +1,22 @@
+{{page-title (concat @model.event.name (format-date @model.event.startDate "Pp"))}}
+
+<LinkTo @route="index">[Terug]</LinkTo>
+
+<h1>{{@model.event.name}} {{format-date @model.event.startDate "Pp"}}</h1>
+
+<h2>Stats</h2>
+<ul>
+  <li>Aanwezig: {{this.presentCount}}</li>
+  <li>Afwezig: {{this.absentCount}}</li>
+  <li>Niet gekend: {{this.unknownCount}}</li>
+</ul>
+
+<h2>Aanwezigheden</h2>
+<ul>
+  {{#each @model.attendances as |attendance|}}
+    <li>
+      <AttendanceToggle @attendance={{attendance}} />
+    </li>
+  {{/each}}
+</ul>
+{{outlet}}
