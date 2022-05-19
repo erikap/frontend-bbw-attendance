@@ -2,28 +2,17 @@
 
 <div class="max-w-2xl mx-auto">
   {{#if this.session.isAuthenticated}}
-    <nav class="bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex">
-            <div class="flex-shrink-0 flex items-center">
-              <img class="hidden sm:block h-6 w-auto" src="/assets/images/bbw-logo.jpg" alt="Brassband Willebroek">
-            </div>
-            <div class="ml-6 flex space-x-8">
-              <LinkTo @route="index"
-                @activeClass="!border-violet-500 !text-gray-900"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Repetities
-              </LinkTo>
-              <LinkTo @route="people"
-                @activeClass="!border-violet-500 !text-gray-900"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Muzikanten
-              </LinkTo>
-            </div>
-          </div>
-        </div>
-      </div>
+    <nav class="mt-4 flex items-center justify-center space-x-4" aria-label="Tabs">
+      <LinkTo @route="index"
+        @activeClass="!bg-violet-100 !text-violet-700"
+        class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+        Repetities
+      </LinkTo>
+      <LinkTo @route="people"
+        @activeClass="!bg-violet-100 !text-violet-700"
+        class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+        Muzikanten
+      </LinkTo>
     </nav>
   {{/if}}
 

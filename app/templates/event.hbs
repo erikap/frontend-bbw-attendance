@@ -1,7 +1,7 @@
 {{page-title (concat @model.event.name (format-date @model.event.startDate "Pp"))}}
 
 <div class="mt-2 px-4">
-  <LinkTo @route="index" class="text-xs text-gray-900 hover:underline focus:outline-none focus:ring-2 focus:ring-violet-900 focus:border-violet-900">
+  <LinkTo @route="index" class="text-xs text-gray-900 hover:underline rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900 focus:border-violet-900">
     &lt; Terug naar overzicht
   </LinkTo>
 </div>
@@ -13,7 +13,7 @@
 
   <div class="mt-8 relative mx-auto px-4 sm:px-6 lg:px-8">
     <dl class="rounded-lg bg-white grid grid-cols-2">
-      <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+      <div class="flex flex-col border-gray-100 border-r p-6 text-center">
         <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
           Aanwezig
         </dt>
@@ -21,7 +21,7 @@
           {{this.presentCount}}
         </dd>
       </div>
-      <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+      <div class="flex flex-col p-6 text-center">
         <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
           Afwezig
         </dt>
