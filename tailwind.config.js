@@ -6,7 +6,7 @@ module.exports = {
   mode: 'jit',
   content: [
     './app/**/*.{hbs,js,ts,html}',
-    './public/assets/icons/*.svg',
+    './public/assets/**/*.svg',
     './tests/**/*.{hbs,js,ts,html}'
   ],
   theme: {

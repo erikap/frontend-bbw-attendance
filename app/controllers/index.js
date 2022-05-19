@@ -14,7 +14,7 @@ export default class IndexController extends Controller {
   @tracked time;
 
   get isInvalid() {
-    return isEmpty(this.name) && isEmpty(this.date) && isEmpty(this.time);
+    return isEmpty(this.name) || isEmpty(this.date) || isEmpty(this.time);
   }
 
   @action
