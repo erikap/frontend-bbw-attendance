@@ -37,7 +37,7 @@ export default class EventsIndexController extends Controller {
       })
     );
 
-    this.router.transitionTo('event', event.id);
+    this.router.transitionTo('events.event', event.id);
   }
 
   @action
