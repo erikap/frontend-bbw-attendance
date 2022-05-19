@@ -1,42 +1,70 @@
 {{page-title "Repetities"}}
 
-<h1>Repetities</h1>
+<div class="mt-8 px-4">
+  <form {{on "submit" this.createEvent}} class="p-4 bg-gray-100 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <div class="col-span-2">
+      <label for="event-name" class="sr-only">
+        Naam
+      </label>
+      <input
+        id="event-name"
+        type="text"
+        value={{this.name}}
+        placeholder="Naam"
+        {{on "input" this.setEventName}}
+        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
 
-<form {{on "submit" this.createEvent}}>
-  <label for="event-name">Naam</label>
-  <input
-    id="event-name"
-    type="text"
-    value={{this.name}}
-    {{on "input" this.setEventName}} />
+    <div>
+      <label for="event-date" class="sr-only">
+        Datum
+      </label>
+      <input
+        id="event-date"
+        type="date"
+        value={{this.date}}
+        {{on "input" this.setEventDate}}
+        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
 
-  <label for="event-date">Datum</label>
-  <input
-    id="event-date"
-    type="date"
-    value={{this.date}}
-    {{on "input" this.setEventDate}} />
+    <div>
+      <label for="event-time" class="sr-only">
+        Tijdstip
+      </label>
+      <input
+        id="event-time"
+        type="time"
+        value={{this.time}}
+        {{on "input" this.setEventTime}}
+        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
 
-  <label for="event-time">Tijdstip</label>
-  <input
-    id="event-time"
-    type="time"
-    value={{this.time}}
-    {{on "input" this.setEventTime}} />
+    <div class="col-start-2 sm:col-start-4 text-right">
+      <button
+        type="submit"
+        disabled={{this.isInvalid}}
+        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-violet-900 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900 disabled:bg-gray-300">
+        Toevoegen
+      </button>
+    </div>
+  </form>
 
-  <button type="submit" disabled={{this.isInvalid}}>
-    Toevoegen
-  </button>
-</form>
-
-<ul>
-  {{#each @model.events as |event|}}
-    <li>
-      <LinkTo @route="event" @model={{event.id}}>
-        {{event.name}} {{format-date event.startDate "Pp"}}
-      </LinkTo>
-    </li>
-  {{/each}}
-</ul>
-
-{{outlet}}
+  <ul role="list" class="mt-8 divide-y divide-gray-200">
+    {{#each @model.events as |event|}}
+      <li>
+        <LinkTo @route="event" @model={{event.id}}
+          class="block p-4 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-900 focus:border-violet-900">
+          <div class="flex flex-row justify-between">
+            <div>
+              {{event.name}} {{format-date event.startDate "Pp"}}
+            </div>
+            <div class="text-violet-900 hover:text-violet-700">
+              {{svg-jar "solid-chevron-right" class="h-6 w-6"}}
+            </div>
+          </div>
+        </LinkTo>
+      </li>
+    {{/each}}
+  </ul>
+  {{outlet}}
+</div>
