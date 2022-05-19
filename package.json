@@ -2,22 +2,24 @@
   "name": "frontend-bbw-attendance",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for frontend-bbw-attendance goes here",
+  "description": "Frontend of BBW Attendance app",
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "Erika Pauwels <erika.pauwels@gmail.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
   "scripts": {
-    "build": "ember build --environment=production",
+    "build": "npm run postcss:build && ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "postcss:build": "postcss ./app/styles/tailwind-input.css -o ./public/assets/tailwind.css",
+    "postcss:watch": "postcss ./app/styles/tailwind-input.css -o ./public/assets/tailwind.css --watch --verbose",
     "start": "ember serve",
     "test": "npm-run-all lint test:*",
     "test:ember": "ember test"
@@ -27,6 +29,8 @@
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@tailwindcss/forms": "^0.5.2",
+    "autoprefixer": "^10.4.7",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "date-fns": "^2.28.0",
@@ -44,6 +48,7 @@
     "ember-fetch": "^8.1.1",
     "ember-load-initializers": "^2.1.2",
     "ember-mu-login": "^2.0.1",
+    "ember-mu-transform-helpers": "^2.1.2",
     "ember-page-title": "^7.0.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
@@ -59,9 +64,13 @@
     "eslint-plugin-qunit": "^7.2.0",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.1.0",
     "prettier": "^2.6.1",
     "qunit": "^2.18.0",
     "qunit-dom": "^2.0.0",
+    "tailwindcss": "^3.0.24",
     "webpack": "^5.70.0"
   },
   "engines": {
@@ -69,8 +78,5 @@
   },
   "ember": {
     "edition": "octane"
-  },
-  "dependencies": {
-    "ember-mu-transform-helpers": "^2.1.2"
   }
 }
