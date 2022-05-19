@@ -1,6 +1,7 @@
-{{page-title "Aanwezigheden"}}
+{{page-title "Repetities"}}
 
-<h2>Repetities</h2>
+<h1>Repetities</h1>
+
 <form {{on "submit" this.createEvent}}>
   <label for="event-name">Naam</label>
   <input
@@ -35,15 +36,6 @@
         {{event.name}} {{format-date event.startDate "Pp"}}
       </LinkTo>
     </li>
-  {{/each}}
-</ul>
-
-<hr />
-
-<h2>Muzikanten</h2>
-<ul>
-  {{#each @model.persons as |person|}}
-    <li>{{person.givenName}} {{person.familyName}}</li>
   {{/each}}
 </ul>
 

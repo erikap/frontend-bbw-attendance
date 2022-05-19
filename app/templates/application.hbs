@@ -1,3 +1,8 @@
 {{page-title "BBW"}}
 
+{{#if this.session.isAuthenticated}}
+  <LinkTo @route="index">[Repetities]</LinkTo>
+  <LinkTo @route="people">[Muzikanten]</LinkTo>
+{{/if}}
+
 {{outlet}}
