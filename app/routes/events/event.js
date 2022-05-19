@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class EventRoute extends Route {
+export default class EventsEventRoute extends Route {
   @service session;
   @service store;
 

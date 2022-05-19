@@ -3,9 +3,9 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { STATUS_UNDEFINED } from '../models/attendance';
+import { STATUS_UNDEFINED } from '../../models/attendance';
 
-export default class IndexController extends Controller {
+export default class EventsIndexController extends Controller {
   @service store;
   @service router;
 

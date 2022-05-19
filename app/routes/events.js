@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
-export default class IndexRoute extends Route {
-  @service router;
+export default class EventsRoute extends Route {
+  @service session;
 
   beforeModel(transition) {
-    this.router.transitionTo('events.index');
+    this.session.requireAuthentication(transition, 'login');
   }
 }

@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 
-export default class EventController extends Controller {
+export default class EventsEventController extends Controller {
   get presentCount() {
     return this.model.attendances.filterBy('isPresent').length;
   }
