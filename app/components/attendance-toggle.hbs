@@ -1,11 +1,19 @@
-<div>
-  {{@attendance.person.givenName}} {{@attendance.person.familyName}}
+<div class="flex flex-row items-center justify-between">
+  <div class="text-gray-900 text-sm">
+    {{@attendance.person.givenName}} {{@attendance.person.familyName}}
+  </div>
+  <div>
+    <button
+      type="button"
+      {{on "click" this.togglePresence}}
+      class="inline-flex items-center p-2 border border-transparent rounded-full text-white {{if @attendance.isPresent "bg-green-600" "bg-gray-300"}} hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+      {{svg-jar "solid-check" class="h-6 w-6"}}
+    </button>
+    <button
+      type="button"
+      {{on "click" this.toggleAbsence}}
+      class="inline-flex items-center p-2 border border-transparent rounded-full text-white {{if @attendance.isAbsent "bg-red-600" "bg-gray-300"}} hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+      {{svg-jar "solid-x" class="h-6 w-6"}}
+    </button>
+  </div>
 </div>
-<div>
-  Aanwezig:
-  <button type="button" {{on "click" this.togglePresence}}>Ja</button>
-  <button type="button" {{on "click" this.toggleAbsence}}>Nee</button>
-  {{@attendance.status}}
-</div>
-
-  {{yield}}

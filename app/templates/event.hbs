@@ -1,22 +1,44 @@
 {{page-title (concat @model.event.name (format-date @model.event.startDate "Pp"))}}
 
-<LinkTo @route="index">[Terug]</LinkTo>
+<div class="mt-2 px-4">
+  <LinkTo @route="index" class="text-xs text-gray-900 hover:underline focus:outline-none focus:ring-2 focus:ring-violet-900 focus:border-violet-900">
+    &lt; Terug naar overzicht
+  </LinkTo>
+</div>
 
-<h1>{{@model.event.name}} {{format-date @model.event.startDate "Pp"}}</h1>
+<div class="mt-4 px-4">
+  <h1 class="text-3xl">
+    {{@model.event.name}} {{format-date @model.event.startDate "Pp"}}
+  </h1>
 
-<h2>Stats</h2>
-<ul>
-  <li>Aanwezig: {{this.presentCount}}</li>
-  <li>Afwezig: {{this.absentCount}}</li>
-  <li>Niet gekend: {{this.unknownCount}}</li>
-</ul>
+  <div class="mt-8 relative mx-auto px-4 sm:px-6 lg:px-8">
+    <dl class="rounded-lg bg-white grid grid-cols-2">
+      <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+        <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
+          Aanwezig
+        </dt>
+        <dd class="order-1 text-4xl font-extrabold text-violet-900">
+          {{this.presentCount}}
+        </dd>
+      </div>
+      <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+        <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
+          Afwezig
+        </dt>
+        <dd class="order-1 text-4xl font-extrabold text-violet-900">
+          {{this.absentCount}}
+        </dd>
+      </div>
+    </dl>
+  </div>
 
-<h2>Aanwezigheden</h2>
-<ul>
-  {{#each @model.attendances as |attendance|}}
-    <li>
-      <AttendanceToggle @attendance={{attendance}} />
-    </li>
-  {{/each}}
-</ul>
+  <ul role="list" class="mt-8 divide-y divide-gray-200">
+    {{#each @model.attendances as |attendance|}}
+      <li class="p-4">
+        <AttendanceToggle @attendance={{attendance}} />
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
 {{outlet}}
