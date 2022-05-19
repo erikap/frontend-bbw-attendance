@@ -2,18 +2,31 @@
 
 <div class="max-w-2xl mx-auto">
   {{#if this.session.isAuthenticated}}
-    <nav class="mt-4 flex items-center justify-center space-x-4" aria-label="Tabs">
-      <LinkTo @route="events"
-        @activeClass="!bg-violet-100 !text-violet-700"
-        class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
-        Repetities
-      </LinkTo>
-      <LinkTo @route="people"
-        @activeClass="!bg-violet-100 !text-violet-700"
-        class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
-        Muzikanten
-      </LinkTo>
-    </nav>
+    <div class="mt-4 px-4 flex flex-row items-center justify-between">
+      <div>
+      </div>
+      <nav class="flex items-center justify-center space-x-4" aria-label="Tabs">
+        <LinkTo @route="events"
+          @activeClass="!bg-violet-100 !text-violet-700"
+          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+          Repetities
+        </LinkTo>
+        <LinkTo @route="people"
+          @activeClass="!bg-violet-100 !text-violet-700"
+          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+          Muzikanten
+        </LinkTo>
+      </nav>
+
+      <div>
+        <button
+          type="button"
+          class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-900"
+          {{on "click" this.logout}}>
+          {{svg-jar "solid-logout" class="h-6 w-6"}}
+        </button>
+      </div>
+    </div>
   {{/if}}
 
   {{outlet}}
