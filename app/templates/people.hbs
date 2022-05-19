@@ -1,10 +1,53 @@
 {{page-title "Muzikanten"}}
 
-<h1>Muzikanten</h1>
-<ul>
-  {{#each @model as |person|}}
-    <li>{{person.givenName}} {{person.familyName}}</li>
-  {{/each}}
-</ul>
+<div class="mt-8 px-4">
+  <form {{on "submit" this.createPerson}} class="p-4 bg-gray-100 rounded-md grid sm:grid-cols-5 gap-4">
+    <div class="sm:col-span-2">
+      <label for="given-name" class="sr-only">
+        Voornaam
+      </label>
+      <input
+        id="given-name"
+        type="text"
+        value={{this.givenName}}
+        placeholder="Voornaam"
+        {{on "input" this.setGivenName}}
+        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
 
-{{outlet}}
+    <div class="sm:col-span-2">
+      <label for="family-name" class="sr-only">
+        Achternaam
+      </label>
+      <input
+        id="family-name"
+        type="text"
+        value={{this.familyName}}
+        placeholder="Achternaam"
+        {{on "input" this.setFamilyName}}
+        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
+
+    <div class="text-right">
+      <button
+        type="submit"
+        disabled={{this.isInvalid}}
+        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-violet-900 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900 disabled:bg-gray-300">
+        Toevoegen
+      </button>
+    </div>
+  </form>
+
+  <ul role="list" class="mt-8 divide-y divide-gray-200">
+    {{#each @model as |person|}}
+      <li class="p-4 text-sm text-gray-900">
+        <div class="flex flex-row justify-between">
+          <div>
+            {{person.givenName}} {{person.familyName}}
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  {{outlet}}
+</div>

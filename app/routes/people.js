@@ -17,4 +17,10 @@ export default class PeopleRoute extends Route {
       },
     });
   }
+
+  setupController(controller) {
+    super.setupController(...arguments);
+    controller.givenName = null;
+    controller.familyName = null;
+  }
 }

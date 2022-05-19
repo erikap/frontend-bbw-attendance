@@ -10,6 +10,6 @@ Router.map(function () {
   this.route('login');
   this.route('people');
   this.route('events', function () {
-    this.route('event', { path: ':event_id' } );
+    this.route('event', { path: ':event_id' });
   });
 });
