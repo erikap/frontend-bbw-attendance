@@ -5,4 +5,5 @@ export default class PersonModel extends Model {
   @attr('string') familyName;
 
   @hasMany('attendance') attendances;
+  @hasMany('groups') groups;
 }

@@ -10,6 +10,7 @@ export default class PeopleController extends Controller {
 
   @tracked givenName;
   @tracked familyName;
+  @tracked defaultGroup;
 
   get isInvalid() {
     return isEmpty(this.givenName) || isEmpty(this.familyName);
@@ -20,7 +21,8 @@ export default class PeopleController extends Controller {
     e.preventDefault();
     const person = this.store.createRecord('person', {
       givenName: this.givenName,
-      familyName: this.familyName
+      familyName: this.familyName,
+      groups: [ this.defaultGroup ],
     });
     await person.save();
 
