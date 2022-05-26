@@ -10,9 +10,11 @@ export default class PeopleController extends Controller {
 
   @tracked givenName;
   @tracked familyName;
+  @tracked isShownArchive = false;
 
   defaultGroup;
   archiveGroup;
+  archivedPeople;
 
   get isInvalid() {
     return isEmpty(this.givenName) || isEmpty(this.familyName);
@@ -40,6 +42,14 @@ export default class PeopleController extends Controller {
   }
 
   @action
+  async restorePerson(person) {
+    person.groups = [ this.defaultGroup ];
+    await person.save();
+
+    this.router.refresh();
+  }
+
+  @action
   setGivenName(e) {
     this.givenName = e.target.value;
   }
@@ -47,5 +57,10 @@ export default class PeopleController extends Controller {
   @action
   setFamilyName(e) {
     this.familyName = e.target.value;
+  }
+
+  @action
+  toggleIsShownArchive() {
+    this.isShownArchive = !this.isShownArchive;
   }
 }

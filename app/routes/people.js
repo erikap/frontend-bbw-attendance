@@ -21,6 +21,14 @@ export default class PeopleRoute extends Route {
   }
 
   async afterModel() {
+    this.archivedPeople = this.store.query('person', {
+      sort: 'family-name,given-name',
+      page: {
+        size: 100,
+      },
+      'filter[groups][:uri:]': CONSTANTS.GROUPS.EXTERNAL,
+    });
+
     this.bbwGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.BBW);
     this.externalGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.EXTERNAL);
   }
@@ -31,5 +39,6 @@ export default class PeopleRoute extends Route {
     controller.familyName = null;
     controller.defaultGroup = this.bbwGroup;
     controller.archiveGroup = this.externalGroup;
+    controller.archivedPeople = this.archivedPeople;
   }
 }

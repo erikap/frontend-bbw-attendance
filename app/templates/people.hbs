@@ -56,5 +56,43 @@
       </li>
     {{/each}}
   </ul>
-  {{outlet}}
+
+  {{#if this.archivedPeople}}
+    <div class="mt-8">
+      <div class="p-4 flex flex-row justify-between bg-gray-50">
+        <h2 class="text-lg text-gray-800">Archief</h2>
+        <button type="button"
+          class="text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900"
+          {{on "click" this.toggleIsShownArchive}}>
+          {{#if this.isShownArchive}}
+            {{svg-jar "solid-chevron-up" class="h-5 w-5"}}
+          {{else}}
+            {{svg-jar "solid-chevron-right" class="h-5 w-5"}}
+          {{/if}}
+        </button>
+      </div>
+      {{#if this.isShownArchive}}
+        <ul role="list" class="divide-y divide-gray-200">
+          {{#each this.archivedPeople as |person|}}
+            <li class="p-4">
+              <div class="flex flex-row justify-between">
+                <div class="text-sm text-gray-900">
+                  {{person.givenName}} {{person.familyName}}
+                </div>
+                <div>
+                  <button type="button"
+                    class="text-gray-400 hover:text-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900"
+                    {{on "click" (fn this.restorePerson person)}}>
+                    {{svg-jar "solid-reply" class="h-5 w-5"}}
+                  </button>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  {{/if}}
+
+{{outlet}}
 </div>
