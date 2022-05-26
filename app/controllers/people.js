@@ -10,7 +10,9 @@ export default class PeopleController extends Controller {
 
   @tracked givenName;
   @tracked familyName;
-  @tracked defaultGroup;
+
+  defaultGroup;
+  archiveGroup;
 
   get isInvalid() {
     return isEmpty(this.givenName) || isEmpty(this.familyName);
@@ -24,6 +26,14 @@ export default class PeopleController extends Controller {
       familyName: this.familyName,
       groups: [ this.defaultGroup ],
     });
+    await person.save();
+
+    this.router.refresh();
+  }
+
+  @action
+  async archivePerson(person) {
+    person.groups = [ this.archiveGroup ];
     await person.save();
 
     this.router.refresh();

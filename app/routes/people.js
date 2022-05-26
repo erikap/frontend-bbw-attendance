@@ -22,6 +22,7 @@ export default class PeopleRoute extends Route {
 
   async afterModel() {
     this.bbwGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.BBW);
+    this.externalGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.EXTERNAL);
   }
 
   setupController(controller) {
@@ -29,5 +30,6 @@ export default class PeopleRoute extends Route {
     controller.givenName = null;
     controller.familyName = null;
     controller.defaultGroup = this.bbwGroup;
+    controller.archiveGroup = this.externalGroup;
   }
 }

@@ -40,10 +40,17 @@
 
   <ul role="list" class="mt-8 divide-y divide-gray-200">
     {{#each @model as |person|}}
-      <li class="p-4 text-sm text-gray-900">
+      <li class="p-4">
         <div class="flex flex-row justify-between">
-          <div>
+          <div class="text-sm text-gray-900">
             {{person.givenName}} {{person.familyName}}
+          </div>
+          <div>
+            <button type="button"
+              class="text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              {{on "click" (fn this.archivePerson person)}}>
+              {{svg-jar "solid-trash" class="h-5 w-5"}}
+            </button>
           </div>
         </div>
       </li>
