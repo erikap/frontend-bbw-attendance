@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 export default {
   GROUPS: {
     BBW: 'http://data.bbw.craps.cloud/groups/fee12a69-f3fd-4611-af5c-c47dac75f0e2',
@@ -9,3 +10,4 @@ export default {
     UNDEFINED: 'http://data.bbw.craps.cloud/attendance-statuses/undefined',
   },
 };
+/* eslint-enable prettier/prettier */

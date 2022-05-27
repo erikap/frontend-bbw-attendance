@@ -58,8 +58,11 @@
             <div>
               {{event.name}} {{format-date event.startDate "Pp"}}
             </div>
-            <div class="text-violet-900 hover:text-violet-700">
-              {{svg-jar "outline-chevron-right" class="h-6 w-6"}}
+            <div class="flex flex-row space-x-4">
+              <EventAttendanceCount @event={{event}} />
+              <div class="text-gray-400">
+                {{svg-jar "outline-chevron-right" class="h-6 w-6"}}
+              </div>
             </div>
           </div>
         </LinkTo>
