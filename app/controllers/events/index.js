@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { STATUS_UNDEFINED } from '../../models/attendance';
+import CONSTANTS from '../../config/constants';
 
 export default class EventsIndexController extends Controller {
   @service store;
@@ -29,7 +29,7 @@ export default class EventsIndexController extends Controller {
     await Promise.all(
       this.model.persons.map((person) => {
         const attendance = this.store.createRecord('attendance', {
-          status: STATUS_UNDEFINED,
+          status: CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED,
           person: person,
           event: event,
         });

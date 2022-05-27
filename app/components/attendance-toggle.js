@@ -1,28 +1,24 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import {
-  STATUS_UNDEFINED,
-  STATUS_PRESENT,
-  STATUS_ABSENT,
-} from '../models/attendance';
+import CONSTANTS from '../config/constants';
 
 export default class AttendanceToggleComponent extends Component {
   @action
   async togglePresence() {
-    if (this.args.attendance.status == STATUS_PRESENT) {
-      this.args.attendance.status = STATUS_UNDEFINED;
+    if (this.args.attendance.status == CONSTANTS.ATTENDANCE_STATUSES.PRESENT) {
+      this.args.attendance.status = CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED;
     } else {
-      this.args.attendance.status = STATUS_PRESENT;
+      this.args.attendance.status = CONSTANTS.ATTENDANCE_STATUSES.PRESENT;
     }
     await this.args.attendance.save();
   }
 
   @action
   async toggleAbsence() {
-    if (this.args.attendance.status == STATUS_ABSENT) {
-      this.args.attendance.status = STATUS_UNDEFINED;
+    if (this.args.attendance.status == CONSTANTS.ATTENDANCE_STATUSES.ABSENT) {
+      this.args.attendance.status = CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED;
     } else {
-      this.args.attendance.status = STATUS_ABSENT;
+      this.args.attendance.status = CONSTANTS.ATTENDANCE_STATUSES.ABSENT;
     }
     await this.args.attendance.save();
   }

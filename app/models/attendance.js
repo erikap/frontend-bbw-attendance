@@ -1,10 +1,5 @@
 import Model, { attr, belongsTo } from '@ember-data/model';
-
-const STATUS_UNDEFINED =
-  'http://data.bbw.craps.cloud/attendance-statuses/undefined';
-const STATUS_PRESENT =
-  'http://data.bbw.craps.cloud/attendance-statuses/present';
-const STATUS_ABSENT = 'http://data.bbw.craps.cloud/attendance-statuses/absent';
+import CONSTANTS from '../config/constants';
 
 export default class AttendanceModel extends Model {
   @attr('string') status;
@@ -13,16 +8,14 @@ export default class AttendanceModel extends Model {
   @belongsTo('person') person;
 
   get isPresent() {
-    return this.status == STATUS_PRESENT;
+    return this.status == CONSTANTS.ATTENDANCE_STATUSES.PRESENT;
   }
 
   get isAbsent() {
-    return this.status == STATUS_ABSENT;
+    return this.status == CONSTANTS.ATTENDANCE_STATUSES.ABSENT;
   }
 
   get isUnknown() {
-    return this.status == STATUS_UNDEFINED;
+    return this.status == CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED;
   }
 }
-
-export { STATUS_UNDEFINED, STATUS_PRESENT, STATUS_ABSENT };
