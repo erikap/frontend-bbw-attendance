@@ -26,7 +26,7 @@ export default class PeopleController extends Controller {
     const person = this.store.createRecord('person', {
       givenName: this.givenName,
       familyName: this.familyName,
-      groups: [ this.defaultGroup ],
+      groups: [this.defaultGroup],
     });
     await person.save();
 
@@ -35,7 +35,7 @@ export default class PeopleController extends Controller {
 
   @action
   async archivePerson(person) {
-    person.groups = [ this.archiveGroup ];
+    person.groups = [this.archiveGroup];
     await person.save();
 
     this.router.refresh();
@@ -43,7 +43,7 @@ export default class PeopleController extends Controller {
 
   @action
   async restorePerson(person) {
-    person.groups = [ this.defaultGroup ];
+    person.groups = [this.defaultGroup];
     await person.save();
 
     this.router.refresh();

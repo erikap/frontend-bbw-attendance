@@ -29,8 +29,14 @@ export default class PeopleRoute extends Route {
       'filter[groups][:uri:]': CONSTANTS.GROUPS.EXTERNAL,
     });
 
-    this.bbwGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.BBW);
-    this.externalGroup = await this.store.findRecordByUri('group', CONSTANTS.GROUPS.EXTERNAL);
+    this.bbwGroup = await this.store.findRecordByUri(
+      'group',
+      CONSTANTS.GROUPS.BBW
+    );
+    this.externalGroup = await this.store.findRecordByUri(
+      'group',
+      CONSTANTS.GROUPS.EXTERNAL
+    );
   }
 
   setupController(controller) {
