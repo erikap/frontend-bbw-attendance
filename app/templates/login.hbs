@@ -3,7 +3,11 @@
 <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8">
     <div>
-      <img class="mx-auto h-24 w-auto" src="assets/images/{{this.logoImageName}}" alt="Band logo">
+      {{#if (eq this.primaryTheme "bbw")}}
+        <img class="mx-auto h-24 w-auto" src="assets/images/logo-bbw.jpg" alt="BBW">
+      {{else if (eq this.primaryTheme "ybbw")}}
+        <img class="mx-auto h-24 w-auto" src="assets/images/logo-ybbw.jpg" alt="YBBW">
+      {{/if}}
     </div>
     <MuLogin />
   </div>
