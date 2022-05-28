@@ -4,7 +4,8 @@
 
 @import "tailwindcss/utilities";
 
-:root { /* Violet color panel */
+:root,
+.theme-bbw { /* Violet color panel */
   --color-primary-50: #f5f3ff;
   --color-primary-100: #ede9fe;
   --color-primary-200: #ddd6fe;
@@ -43,7 +44,7 @@
   --color-primary-900: #064e3b;
 }
 
-.theme-khsc { /* Cyan color panel */
+.theme-khsc { /* Rose color panel */
   --color-primary-50: #fff1f2;
   --color-primary-100: #ffe4e6;
   --color-primary-200: #fecdd3;

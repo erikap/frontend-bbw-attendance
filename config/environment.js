@@ -6,6 +6,10 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'history',
+    theme: {
+      primary: '{{PRIMARY_THEME}}',
+      rootTitle: '{{ROOT_TITLE}}',
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -24,6 +28,8 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
+    ENV.theme.primary = null;
+    ENV.theme.rootTitle = null;
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
