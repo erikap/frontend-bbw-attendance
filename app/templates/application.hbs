@@ -7,13 +7,13 @@
       </div>
       <nav class="flex items-center justify-center space-x-4" aria-label="Tabs">
         <LinkTo @route="events"
-          @activeClass="!bg-violet-100 !text-violet-700"
-          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+          @activeClass="!bg-primary-100 !text-primary-700"
+          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary-900">
           Repetities
         </LinkTo>
         <LinkTo @route="people"
-          @activeClass="!bg-violet-100 !text-violet-700"
-          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-violet-900">
+          @activeClass="!bg-primary-100 !text-primary-700"
+          class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary-900">
           Muzikanten
         </LinkTo>
       </nav>
@@ -22,7 +22,7 @@
         <div class="ml-3 relative">
           <div>
             <button type="button"
-              class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900"
+              class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
               id="user-menu-button" aria-expanded="false" aria-haspopup="true"
               {{on "click" this.toggleUserMenu}}>
               <span class="sr-only">Toggle user menu</span>

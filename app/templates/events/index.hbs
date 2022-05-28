@@ -12,7 +12,7 @@
         value={{this.name}}
         placeholder="Naam"
         {{on "input" this.setEventName}}
-        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+        class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
     </div>
 
     <div>
@@ -24,7 +24,7 @@
         type="date"
         value={{this.date}}
         {{on "input" this.setEventDate}}
-        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+        class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
     </div>
 
     <div>
@@ -36,14 +36,14 @@
         type="time"
         value={{this.time}}
         {{on "input" this.setEventTime}}
-        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+        class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
     </div>
 
     <div class="col-start-2 sm:col-start-4 text-right">
       <button
         type="submit"
         disabled={{this.isInvalid}}
-        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-violet-900 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900 disabled:bg-gray-300">
+        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 disabled:bg-gray-300">
         Toevoegen
       </button>
     </div>
@@ -53,7 +53,7 @@
     {{#each @model.events as |event|}}
       <li>
         <LinkTo @route="events.event" @model={{event.id}}
-          class="block p-4 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-900 focus:border-violet-900">
+          class="block p-4 text-sm text-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-900 focus:border-primary-900">
           <div class="flex flex-row justify-between">
             <div>
               {{event.name}} {{format-date event.startDate "Pp"}}

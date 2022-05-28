@@ -12,7 +12,7 @@
         value={{this.givenName}}
         placeholder="Voornaam"
         {{on "input" this.setGivenName}}
-        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+        class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
     </div>
 
     <div class="sm:col-span-2">
@@ -25,14 +25,14 @@
         value={{this.familyName}}
         placeholder="Achternaam"
         {{on "input" this.setFamilyName}}
-        class="shadow-sm focus:ring-violet-900 focus:border-violet-900 block w-full text-sm border-gray-300 rounded-md" />
+        class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
     </div>
 
     <div class="text-right">
       <button
         type="submit"
         disabled={{this.isInvalid}}
-        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-violet-900 hover:bg-violet-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900 disabled:bg-gray-300">
+        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 disabled:bg-gray-300">
         Toevoegen
       </button>
     </div>
@@ -82,7 +82,7 @@
                 </div>
                 <div>
                   <button type="button"
-                    class="text-gray-400 hover:text-violet-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-900"
+                    class="text-gray-400 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
                     {{on "click" (fn this.restorePerson person)}}>
                     {{svg-jar "outline-reply" class="h-5 w-5"}}
                   </button>
