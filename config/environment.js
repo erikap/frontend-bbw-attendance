@@ -28,8 +28,8 @@ module.exports = function (environment) {
   };
 
   if (environment === 'development') {
-    ENV.theme.primary = null;
-    ENV.theme.rootTitle = null;
+    ENV.theme.primary = 'bbw';
+    ENV.theme.rootTitle = 'BBW';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
