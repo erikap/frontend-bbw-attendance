@@ -1,7 +1,7 @@
 {{page-title "Repetities"}}
 
 <div class="mt-8 px-4">
-  <form {{on "submit" this.createEvent}} class="p-4 bg-gray-100 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-4">
+  <form {{on "submit" (perform this.createEvent)}} class="p-4 bg-gray-100 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-4">
     <div class="col-span-2">
       <label for="event-name" class="sr-only">
         Naam
@@ -42,7 +42,7 @@
     <div class="col-start-2 sm:col-start-4 text-right">
       <button
         type="submit"
-        disabled={{this.isInvalid}}
+        disabled={{or this.createEvent.isRunning this.isInvalid}}
         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 disabled:bg-gray-300">
         Toevoegen
       </button>
