@@ -1,0 +1,13 @@
+{{page-title "Statistieken"}}
+
+<div class="mt-4 px-4">
+  <h1 class="text-xl">Aanwezigheden per repetitie</h1>
+  <Stats::EventAttendance @events={{@model.events}} class="mt-4" />
+</div>
+
+<div class="mt-8 px-4">
+  <h1 class="text-xl">Aanwezigheden per persoon</h1>
+  <Stats::PersonAttendance @persons={{@model.persons}} />
+</div>
+
+{{outlet}}

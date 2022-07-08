@@ -13,4 +13,5 @@ Router.map(function () {
     this.route('event', { path: ':event_id' });
   });
   this.route('profile');
+  this.route('stats');
 });

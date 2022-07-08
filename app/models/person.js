@@ -6,4 +6,8 @@ export default class PersonModel extends Model {
 
   @hasMany('attendance') attendances;
   @hasMany('groups') groups;
+
+  get fullName() {
+    return [this.givenName, this.familyName].join(' ').trim();
+  }
 }

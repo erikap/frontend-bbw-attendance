@@ -1,0 +1,12 @@
+{{#if this.loadData.isRunning}}
+  <div class="h-96 w-full flex items-center justify-center text-gray-700" ...attributes>
+    <Loader @label="Statistiek aan het maken..." />
+  </div>
+{{else}}
+  <canvas height="800" width="750"
+    {{did-insert this.draw}}
+    ...attributes>
+  </canvas>
+{{/if}}
+
+{{yield}}
