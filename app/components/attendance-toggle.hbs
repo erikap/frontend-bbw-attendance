@@ -1,11 +1,13 @@
 <div class="flex flex-row items-center justify-between">
-  <div class="text-gray-900 text-sm">
-    {{#if (eq @label "event")}}
+  {{#if (eq @label "event")}}
+    <LinkTo @route="events.event" @model={{@attendance.event.id}} class="text-gray-900 text-sm">
       {{@attendance.event.name}} {{format-date @attendance.event.startDate "Pp"}}
-    {{else}}
+    </LinkTo>
+  {{else}}
+    <LinkTo @route="people.person" @model={{@attendance.person.id}} class="text-gray-900 text-sm">
       {{@attendance.person.givenName}} {{@attendance.person.familyName}}
-    {{/if}}
-  </div>
+    </LinkTo>
+  {{/if}}
   <div>
     <button
       type="button"
