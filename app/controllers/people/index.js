@@ -4,7 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 
-export default class PeopleController extends Controller {
+export default class PeopleIndexController extends Controller {
   @service store;
   @service router;
 

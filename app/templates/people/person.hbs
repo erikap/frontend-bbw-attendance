@@ -1,0 +1,23 @@
+{{page-title @model.person.fullName}}
+
+<div class="mt-2 px-4">
+  <LinkTo @route="people.index" class="text-xs text-gray-900 hover:underline rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 focus:border-primary-900">
+    &lt; Terug naar overzicht
+  </LinkTo>
+</div>
+
+<div class="mt-4 px-4">
+  <h1 class="text-3xl">
+    {{@model.person.fullName}}
+  </h1>
+
+  <ul role="list" class="mt-8 divide-y divide-gray-200">
+    {{#each @model.attendances as |attendance|}}
+      <li class="p-4">
+        <AttendanceToggle @attendance={{attendance}} @label="event" />
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+{{outlet}}
