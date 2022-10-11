@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { isEmpty } from '@ember/utils';
 import CONSTANTS from '../../config/constants';
+import dateAndTimeToJsDate from '../../utils/date-and-time-to-js-date';
 
 export default class EventsIndexController extends Controller {
   @service store;
@@ -23,7 +24,7 @@ export default class EventsIndexController extends Controller {
     e.preventDefault();
     const event = this.store.createRecord('event', {
       name: this.name,
-      startDate: new Date(Date.parse(`${this.date}T${this.time}:00`)),
+      startDate: dateAndTimeToJsDate(this.date, this.time),
     });
     yield event.save();
 

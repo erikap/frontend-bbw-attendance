@@ -16,4 +16,10 @@ export default class EventsEventRoute extends Route {
     });
     return { event, attendances };
   }
+
+  setupController(controller, model) {
+    super.setupController(...arguments);
+    controller.isEditing = false;
+    controller.resetDateAndTime(model.event.startDate);
+  }
 }

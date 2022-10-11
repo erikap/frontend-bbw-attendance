@@ -7,9 +7,74 @@
 </div>
 
 <div class="mt-4 px-4">
-  <h1 class="text-3xl">
-    {{@model.event.name}} {{format-date @model.event.startDate "Pp"}}
-  </h1>
+  {{#if this.isEditing}}
+    <form {{on "submit" this.updateEvent}} class="p-4 bg-gray-100 rounded-md grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="col-span-2">
+        <label for="event-name" class="sr-only">
+          Naam
+        </label>
+        <input
+          id="event-name"
+          type="text"
+          value={{@model.event.name}}
+          placeholder="Naam"
+          {{on "input" this.setEventName}}
+          class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+      </div>
+
+      <div>
+        <label for="event-date" class="sr-only">
+          Datum
+        </label>
+        <input
+          id="event-date"
+          type="date"
+          value={{this.date}}
+          {{on "input" this.setEventDate}}
+          class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+      </div>
+
+      <div>
+        <label for="event-time" class="sr-only">
+          Tijdstip
+        </label>
+        <input
+          id="event-time"
+          type="time"
+          value={{this.time}}
+          {{on "input" this.setEventTime}}
+          class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+      </div>
+
+      <div class="col-span-2 sm:col-start-3 text-right">
+        <button
+          type="button"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
+          {{on "click" this.cancelEditMode}}>
+          Annuleren
+        </button>
+        <button
+          type="submit"
+          disabled={{this.isInvalid}}
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 disabled:bg-gray-300">
+          Opslaan
+        </button>
+      </div>
+    </form>
+  {{else}}
+    <div class="flex items-center space-x-4">
+      <h1 class="flex flex-col space-y-1 sm:flex-row sm:items-baseline sm:space-x-2 text-3xl">
+        <span>{{@model.event.name}}</span>
+        <span>{{format-date @model.event.startDate "Pp"}}</span>
+      </h1>
+      <button
+        type="button"
+        class="text-gray-400 hover:text-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
+        {{on "click" this.openEditMode}}>
+        {{svg-jar "outline-pencil" class="h-5 w-5"}}
+      </button>
+    </div>
+  {{/if}}
 
   <div class="mt-8 relative mx-auto px-4 sm:px-6 lg:px-8">
     <dl class="rounded-lg bg-white grid grid-cols-2">
