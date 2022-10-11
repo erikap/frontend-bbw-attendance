@@ -87,7 +87,7 @@
 
   <ul role="list" class="mt-8 divide-y divide-gray-200">
     {{#each @model.attendances as |attendance|}}
-      <li class="p-4">
+      <li class="py-4 sm:p-4">
         <AttendanceToggle
           @attendance={{attendance}}
           @label="event"
