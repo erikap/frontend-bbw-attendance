@@ -11,6 +11,18 @@ export default class PeoplePersonController extends Controller {
     return isEmpty(this.model.person.givenName) || isEmpty(this.model.person.familyName);
   }
 
+  get totalCount() {
+    return this.model.attendances.length;
+  }
+
+  get presentCount() {
+    return this.model.attendances.filter((a) => a.isPresent).length;
+  }
+
+  get presentPercentage() {
+    return Math.round((this.presentCount / this.totalCount) * 100);
+  }
+
   @action
   async updatePerson(e) {
     e.preventDefault();

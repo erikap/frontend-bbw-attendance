@@ -64,6 +64,27 @@
       </div>
   {{/if}}
 
+  <div class="mt-8 relative mx-auto px-4 sm:px-6 lg:px-8">
+    <dl class="rounded-lg bg-white grid grid-cols-2">
+      <div class="flex flex-col border-gray-100 border-r p-6 text-center">
+        <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
+          Aanwezigheid
+        </dt>
+        <dd class="order-1 text-4xl font-extrabold text-primary-900">
+          {{this.presentCount}} / {{this.totalCount}}
+        </dd>
+      </div>
+      <div class="flex flex-col p-6 text-center">
+        <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
+          Percentage
+        </dt>
+        <dd class="order-1 text-4xl font-extrabold text-primary-900">
+          {{this.presentPercentage}} %
+        </dd>
+      </div>
+    </dl>
+  </div>
+
   <ul role="list" class="mt-8 divide-y divide-gray-200">
     {{#each @model.attendances as |attendance|}}
       <li class="p-4">
