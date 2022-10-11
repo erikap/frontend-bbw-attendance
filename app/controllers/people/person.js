@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import { task } from 'ember-concurrency';
 
 export default class PeoplePersonController extends Controller {
   @tracked isEditing = false;
@@ -36,5 +37,10 @@ export default class PeoplePersonController extends Controller {
   cancelEditMode() {
     this.model.person.rollbackAttributes();
     this.isEditing = false;
+  }
+
+  @task
+  *deleteAttendance(attendance) {
+    yield attendance.destroyRecord();
   }
 }

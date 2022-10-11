@@ -1,13 +1,22 @@
 <div class="flex flex-row items-center justify-between">
-  {{#if (eq @label "event")}}
-    <LinkTo @route="events.event" @model={{@attendance.event.id}} class="text-gray-900 text-sm">
-      {{@attendance.event.name}} {{format-date @attendance.event.startDate "Pp"}}
-    </LinkTo>
-  {{else}}
-    <LinkTo @route="people.person" @model={{@attendance.person.id}} class="text-gray-900 text-sm">
-      {{@attendance.person.givenName}} {{@attendance.person.familyName}}
-    </LinkTo>
-  {{/if}}
+  <div class="flex flex-row items-center space-x-2">
+    {{#if @onDeleteAttendance}}
+      <button type="button"
+        class="text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        {{on "click" (fn @onDeleteAttendance @attendance)}}>
+        {{svg-jar "outline-trash" class="h-5 w-5"}}
+      </button>
+    {{/if}}
+    {{#if (eq @label "event")}}
+      <LinkTo @route="events.event" @model={{@attendance.event.id}} class="text-gray-900 text-sm">
+        {{@attendance.event.name}} {{format-date @attendance.event.startDate "Pp"}}
+      </LinkTo>
+    {{else}}
+      <LinkTo @route="people.person" @model={{@attendance.person.id}} class="text-gray-900 text-sm">
+        {{@attendance.person.givenName}} {{@attendance.person.familyName}}
+      </LinkTo>
+    {{/if}}
+  </div>
   <div>
     <button
       type="button"

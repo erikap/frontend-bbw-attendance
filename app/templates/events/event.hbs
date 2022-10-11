@@ -35,7 +35,9 @@
   <ul role="list" class="mt-8 divide-y divide-gray-200">
     {{#each @model.attendances as |attendance|}}
       <li class="p-4">
-        <AttendanceToggle @attendance={{attendance}} />
+        <AttendanceToggle
+          @attendance={{attendance}}
+          @onDeleteAttendance={{perform this.deleteAttendance}} />
       </li>
     {{/each}}
   </ul>
