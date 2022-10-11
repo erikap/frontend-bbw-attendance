@@ -8,7 +8,7 @@
 
 <div class="mt-4 px-4">
   {{#if this.isEditing}}
-    <form {{on "submit" this.updatePerson}} class="p-4 bg-gray-100 rounded-md grid sm:grid-cols-5 gap-4">
+    <form {{on "submit" this.updatePerson}} class="p-4 bg-gray-100 rounded-md grid sm:grid-cols-4 md:grid-cols-6 gap-4">
       <div class="sm:col-span-2">
         <label for="given-name" class="sr-only">
           Voornaam
@@ -35,7 +35,7 @@
           class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
       </div>
 
-      <div class="text-right">
+      <div class="sm:col-span-2 sm:col-start-3 md:col-start-5 text-right">
         <button
           type="button"
           class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
@@ -70,7 +70,7 @@
         <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
           Aanwezigheid
         </dt>
-        <dd class="order-1 text-4xl font-extrabold text-primary-900">
+        <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
           {{this.presentCount}} / {{this.totalCount}}
         </dd>
       </div>
@@ -78,7 +78,7 @@
         <dt class="order-2 mt-2 text-base leading-6 font-medium text-gray-500">
           Percentage
         </dt>
-        <dd class="order-1 text-4xl font-extrabold text-primary-900">
+        <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
           {{this.presentPercentage}} %
         </dd>
       </div>
