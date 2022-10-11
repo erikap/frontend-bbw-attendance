@@ -7,9 +7,62 @@
 </div>
 
 <div class="mt-4 px-4">
-  <h1 class="text-3xl">
-    {{@model.person.fullName}}
-  </h1>
+  {{#if this.isEditing}}
+    <form {{on "submit" this.updatePerson}} class="p-4 bg-gray-100 rounded-md grid sm:grid-cols-5 gap-4">
+      <div class="sm:col-span-2">
+        <label for="given-name" class="sr-only">
+          Voornaam
+        </label>
+        <input
+          id="given-name"
+          type="text"
+          value={{@model.person.givenName}}
+          placeholder="Voornaam"
+          {{on "input" this.setGivenName}}
+          class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="family-name" class="sr-only">
+          Achternaam
+        </label>
+        <input
+          id="family-name"
+          type="text"
+          value={{@model.person.familyName}}
+          placeholder="Achternaam"
+          {{on "input" this.setFamilyName}}
+          class="shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+      </div>
+
+      <div class="text-right">
+        <button
+          type="button"
+          class="inline-flex items-center px-3 py-2 border border-gray-300 text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
+          {{on "click" this.cancelEditMode}}>
+          Annuleren
+        </button>
+        <button
+          type="submit"
+          disabled={{this.isInvalid}}
+          class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900 disabled:bg-gray-300">
+          Opslaan
+        </button>
+      </div>
+    </form>
+  {{else}}
+      <div class="flex items-center space-x-4">
+        <h1 class="text-3xl">
+          {{@model.person.fullName}}
+        </h1>
+        <button
+          type="button"
+          class="text-gray-400 hover:text-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
+          {{on "click" this.openEditMode}}>
+          {{svg-jar "outline-pencil" class="h-5 w-5"}}
+        </button>
+      </div>
+  {{/if}}
 
   <ul role="list" class="mt-8 divide-y divide-gray-200">
     {{#each @model.attendances as |attendance|}}

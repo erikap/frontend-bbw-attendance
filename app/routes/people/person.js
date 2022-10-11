@@ -16,4 +16,9 @@ export default class PeoplePersonRoute extends Route {
     });
     return { person, attendances };
   }
+
+  setupController(controller) {
+    super.setupController(...arguments);
+    controller.isEditing = false;
+  }
 }
