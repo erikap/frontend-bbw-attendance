@@ -18,7 +18,7 @@ export default class StatsPersonAttendanceComponent extends Component {
   }
 
   get sortedStats() {
-    return this.stats.sortBy('presentCount', 'person.familyName').reverse();
+    return this.stats.sortBy('percentage', 'person.familyName').reverse();
   }
 
   get data() {
@@ -27,7 +27,7 @@ export default class StatsPersonAttendanceComponent extends Component {
       datasets: [
         {
           borderColor: 'rgb(76, 29, 149, 1)',
-          data: this.sortedStats.map((s) => s.presentCount),
+          data: this.sortedStats.map((s) => s.percentage),
           backgroundColor: 'rgba(153, 102, 255, 0.2)',
           axis: 'y',
           grouped: false,
@@ -51,8 +51,9 @@ export default class StatsPersonAttendanceComponent extends Component {
           'filter[person][:id:]': person.id,
           'filter[event][:gt:start-date]': startDate.toISOString(),
         });
+        const percentage = Math.round((presentCount / totalCount) * 100);
 
-        return { person, presentCount, totalCount };
+        return { person, percentage };
       })
     );
   }
