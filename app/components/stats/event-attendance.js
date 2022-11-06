@@ -11,8 +11,7 @@ import { format } from 'date-fns';
 export default class StatsEventAttendanceComponent extends Component {
   @service store;
 
-  @tracked presentCounts = [];
-  @tracked totalCounts = [];
+  @tracked presentPercentages = [];
 
   constructor() {
     super(...arguments);
@@ -35,7 +34,7 @@ export default class StatsEventAttendanceComponent extends Component {
       datasets: [
         {
           borderColor: 'rgb(76, 29, 149, 1)',
-          data: this.presentCounts,
+          data: this.presentPercentages,
         },
       ],
     };
@@ -44,7 +43,7 @@ export default class StatsEventAttendanceComponent extends Component {
   @keepLatestTask
   *loadData() {
     const startDate = sub(new Date(), { months: 6 });
-    const counts = yield Promise.all(
+    const percentages = yield Promise.all(
       this.sortedEvents.map(async (event) => {
         const presentCount = await this.store.count('attendance', {
           'filter[event][:id:]': event.id,
@@ -55,13 +54,16 @@ export default class StatsEventAttendanceComponent extends Component {
           'filter[event][:id:]': event.id,
           'filter[event][:gt:start-date]': startDate.toISOString(),
         });
+        let percentage = 0;
+        if (totalCount) {
+          percentage = Math.round((presentCount / totalCount) * 100);
+        }
 
-        return { presentCount, totalCount };
+        return { percentage };
       })
     );
 
-    this.presentCounts = counts.map((c) => c.presentCount);
-    this.totalCounts = counts.map((c) => c.totalCount);
+    this.presentPercentages = percentages.map((c) => c.percentage);
   }
 
   @action
@@ -80,11 +82,15 @@ export default class StatsEventAttendanceComponent extends Component {
             },
           },
           y: {
-            grid: {
-              display: false,
+            title: {
+              text: 'Percentage (%)',
+              display: true,
             },
-            max: Math.max(...this.totalCounts),
-            min: Math.min(...this.presentCounts),
+            grid: {
+              display: true,
+            },
+            suggestedMax: 100,
+            suggestedMin: 0,
             ticks: {
               stepSize: 1,
             },
