@@ -6,7 +6,8 @@ export default {
   },
   ATTENDANCE_STATUSES: {
     PRESENT: 'http://data.bbw.craps.cloud/attendance-statuses/present',
-    ABSENT: 'http://data.bbw.craps.cloud/attendance-statuses/absent',
+    ABSENT_WITHOUT_REASON: 'http://data.bbw.craps.cloud/attendance-statuses/absent-without-reason',
+    ABSENT_WITH_REASON: 'http://data.bbw.craps.cloud/attendance-statuses/absent',
     UNDEFINED: 'http://data.bbw.craps.cloud/attendance-statuses/undefined',
   },
 };

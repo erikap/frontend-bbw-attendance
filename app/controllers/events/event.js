@@ -19,8 +19,12 @@ export default class EventsEventController extends Controller {
     return this.model.attendances.filterBy('isPresent').length;
   }
 
-  get absentCount() {
-    return this.model.attendances.filterBy('isAbsent').length;
+  get absentWithReasonCount() {
+    return this.model.attendances.filterBy('isAbsentWithReason').length;
+  }
+
+  get absentWithoutReasonCount() {
+    return this.model.attendances.filterBy('isAbsentWithoutReason').length;
   }
 
   get unknownCount() {
