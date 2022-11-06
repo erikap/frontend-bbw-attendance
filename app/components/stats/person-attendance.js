@@ -10,37 +10,18 @@ import { inject as service } from '@ember/service';
 export default class StatsPersonAttendanceComponent extends Component {
   @service store;
 
-  @tracked stats;
+  @tracked groups;
 
   constructor() {
     super(...arguments);
     this.loadData.perform();
   }
 
-  get sortedStats() {
-    return this.stats.sortBy('percentage', 'person.familyName').reverse();
-  }
-
-  get data() {
-    return {
-      labels: this.sortedStats.map((s) => s.person.fullName),
-      datasets: [
-        {
-          borderColor: 'rgb(76, 29, 149, 1)',
-          data: this.sortedStats.map((s) => s.percentage),
-          backgroundColor: 'rgba(153, 102, 255, 0.2)',
-          axis: 'y',
-          grouped: false,
-          barThickness: 15,
-        },
-      ],
-    };
-  }
-
   @keepLatestTask
   *loadData() {
     const startDate = sub(new Date(), { months: 6 });
-    this.stats = yield Promise.all(
+
+    const stats = yield Promise.all(
       this.args.persons.map(async (person) => {
         const presentCount = await this.store.count('attendance', {
           'filter[person][:id:]': person.id,
@@ -56,39 +37,20 @@ export default class StatsPersonAttendanceComponent extends Component {
         return { person, percentage };
       })
     );
-  }
 
-  @action
-  draw(element) {
-    new Chart(element, {
-      type: 'bar',
-      data: this.data,
-      options: {
-        responsive: false,
-        indexAxis: 'y',
-        plugins: {
-          legend: false,
-        },
-        scales: {
-          x: {
-            type: 'linear',
-            grid: {
-              display: false,
-            },
-          },
-          y: {
-            type: 'category',
-            grid: {
-              display: false,
-            },
-            ticks: {
-              autoSkip: false,
-              padding: 10,
-              stepSize: 1,
-            },
-          },
-        },
-      },
+    const groups = {};
+    stats.forEach((stat) => {
+      const group = groups[`${stat.percentage}`];
+      if (group) {
+        group.people.push( stat.person );
+      } else {
+        groups[`${stat.percentage}`] = {
+          percentage: stat.percentage,
+          people: [ stat.person ],
+        };
+      }
     });
+
+    this.groups = Object.keys(groups).map((key) => groups[key]).sortBy('percentage').reverse();
   }
 }
