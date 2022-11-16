@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency';
+import { task, all } from 'ember-concurrency';
 import { isEmpty } from '@ember/utils';
 import CONSTANTS from '../../config/constants';
 import dateAndTimeToJsDate from '../../utils/date-and-time-to-js-date';
@@ -28,7 +28,7 @@ export default class EventsIndexController extends Controller {
     });
     yield event.save();
 
-    yield Promise.all(
+    yield all(
       this.model.persons.map((person) => {
         const attendance = this.store.createRecord('attendance', {
           status: CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED,
