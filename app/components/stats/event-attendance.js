@@ -29,11 +29,13 @@ export default class StatsEventAttendanceComponent extends Component {
   }
 
   get data() {
+    const rootEl = document.getElementById('app-container');
+    const primaryColor = window.getComputedStyle(rootEl).getPropertyValue('--color-primary-900');
     return {
       labels: this.xAxisLabels,
       datasets: [
         {
-          borderColor: 'rgb(76, 29, 149, 1)',
+          borderColor: primaryColor,
           data: this.presentPercentages,
         },
       ],
