@@ -6,7 +6,7 @@ module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     'ember-cli-favicon': {
       iconPath: 'favicon.png',
-    }
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

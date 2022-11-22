@@ -8,7 +8,10 @@ export default class PeoplePersonController extends Controller {
   @tracked isEditing = false;
 
   get isInvalid() {
-    return isEmpty(this.model.person.givenName) || isEmpty(this.model.person.familyName);
+    return (
+      isEmpty(this.model.person.givenName) ||
+      isEmpty(this.model.person.familyName)
+    );
   }
 
   get totalCount() {

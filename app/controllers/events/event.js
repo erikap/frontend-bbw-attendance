@@ -12,7 +12,9 @@ export default class EventsEventController extends Controller {
   @tracked time;
 
   get isInvalid() {
-    return isEmpty(this.model.event.name) || isEmpty(this.model.event.startDate);
+    return (
+      isEmpty(this.model.event.name) || isEmpty(this.model.event.startDate)
+    );
   }
 
   get presentCount() {
