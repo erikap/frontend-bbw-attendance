@@ -11,16 +11,8 @@ export default class AttendanceModel extends Model {
     return this.status == CONSTANTS.ATTENDANCE_STATUSES.PRESENT;
   }
 
-  get isAbsentWithReason() {
-    return this.status == CONSTANTS.ATTENDANCE_STATUSES.ABSENT_WITH_REASON;
-  }
-
-  get isAbsentWithoutReason() {
-    return this.status == CONSTANTS.ATTENDANCE_STATUSES.ABSENT_WITHOUT_REASON;
-  }
-
   get isAbsent() {
-    return this.isAbsentWithoutReason || this.isAbsentWithReason;
+    return this.status == CONSTANTS.ATTENDANCE_STATUSES.ABSENT;
   }
 
   get isUnknown() {

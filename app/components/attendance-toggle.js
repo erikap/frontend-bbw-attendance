@@ -9,13 +9,8 @@ export default class AttendanceToggleComponent extends Component {
   }
 
   @action
-  async toggleAbsenceWithoutReason() {
-    await this._toggleStatus(CONSTANTS.ATTENDANCE_STATUSES.ABSENT_WITHOUT_REASON);
-  }
-
-  @action
-  async toggleAbsenceWithReason() {
-    await this._toggleStatus(CONSTANTS.ATTENDANCE_STATUSES.ABSENT_WITH_REASON);
+  async toggleAbsence() {
+    await this._toggleStatus(CONSTANTS.ATTENDANCE_STATUSES.ABSENT);
   }
 
   async _toggleStatus(status) {
