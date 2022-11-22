@@ -4,6 +4,7 @@ import CONSTANTS from '../../config/constants';
 
 export default class EventsIndexRoute extends Route {
   @service store;
+  @service dateFilter;
 
   async model() {
     const events = await this.store.query('event', {
@@ -11,6 +12,8 @@ export default class EventsIndexRoute extends Route {
       page: {
         size: 100,
       },
+      'filter[:gte:start-date]': this.dateFilter.fromDate?.toISOString(),
+      'filter[:lte:start-date]': this.dateFilter.untilDate?.toISOString(),
     });
 
     const persons = await this.store.query('person', {

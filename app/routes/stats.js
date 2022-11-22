@@ -5,6 +5,7 @@ import CONSTANTS from '../config/constants';
 export default class StatsRoute extends Route {
   @service store;
   @service session;
+  @service dateFilter;
 
   beforeModel(transition) {
     this.session.requireAuthentication(transition, 'login');
@@ -16,6 +17,8 @@ export default class StatsRoute extends Route {
       page: {
         size: 100,
       },
+      'filter[:gte:start-date]': this.dateFilter.fromDate?.toISOString(),
+      'filter[:lte:start-date]': this.dateFilter.untilDate?.toISOString(),
     });
 
     const personsPromise = await this.store.query('person', {

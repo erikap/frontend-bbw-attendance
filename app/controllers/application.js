@@ -8,6 +8,7 @@ export default class ApplicationController extends Controller {
   @service session;
 
   @tracked isShownUserMenu = false;
+  @tracked isShownDateFilter = false;
 
   get pageTitle() {
     return ENV.theme.rootTitle || 'Aanwezigheden';
@@ -29,5 +30,10 @@ export default class ApplicationController extends Controller {
   @action
   toggleUserMenu() {
     this.isShownUserMenu = !this.isShownUserMenu;
+  }
+
+  @action
+  toggleDateFilter() {
+    this.isShownDateFilter = !this.isShownDateFilter;
   }
 }

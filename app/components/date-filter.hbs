@@ -1,0 +1,27 @@
+<div class="p-4 bg-primary-100 rounded-b-md rounded-r-md space-y-4">
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+    <div>
+      <label for="from-date" class="block text-sm font-medium text-gray-700">
+        Van
+      </label>
+      <input
+        id="from-date"
+        type="date"
+        value={{this.fromDate}}
+        {{on "input" this.setFromDate}}
+        class="mt-1 shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
+
+    <div>
+      <label for="until-date" class="block text-sm font-medium text-gray-700">
+        Tot
+      </label>
+      <input
+        id="until-date"
+        type="date"
+        value={{this.untilDate}}
+        {{on "input" this.setUntilDate}}
+        class="mt-1 shadow-sm focus:ring-primary-900 focus:border-primary-900 block w-full text-sm border-gray-300 rounded-md" />
+    </div>
+  </div>
+</div>
