@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import Chart from 'chart.js/auto';
 import { keepLatestTask } from 'ember-concurrency';
 import CONSTANTS from '../../config/constants';
-import sub from 'date-fns/sub';
 import { tracked } from '@glimmer/tracking';
 import { format } from 'date-fns';
 
@@ -44,17 +43,14 @@ export default class StatsEventAttendanceComponent extends Component {
 
   @keepLatestTask
   *loadData() {
-    const startDate = sub(new Date(), { months: 6 });
     const percentages = yield Promise.all(
       this.sortedEvents.map(async (event) => {
         const presentCount = await this.store.count('attendance', {
           'filter[event][:id:]': event.id,
           'filter[status][:uri:]': CONSTANTS.ATTENDANCE_STATUSES.PRESENT,
-          'filter[event][:gt:start-date]': startDate.toISOString(),
         });
         const totalCount = await this.store.count('attendance', {
           'filter[event][:id:]': event.id,
-          'filter[event][:gt:start-date]': startDate.toISOString(),
         });
         let percentage = 0;
         if (totalCount) {
