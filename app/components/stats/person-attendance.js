@@ -57,7 +57,7 @@ export default class StatsPersonAttendanceComponent extends Component {
 
     this.groups = Object.keys(groups)
       .map((key) => groups[key])
-      .sortBy('percentage')
+      .sort((a, b) => a?.percentage - b?.percentage)
       .reverse();
   }
 }
