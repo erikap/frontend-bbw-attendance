@@ -22,7 +22,8 @@ export default class PersonPickerComponent extends Component {
         size: 100,
       },
       'filter[groups][:uri:]': CONSTANTS.GROUPS.BBW,
-      'filter[attendances][event][:not:start-date]': this.args.event?.startDate.toISOString(),
+      'filter[attendances][event][:not:start-date]':
+        this.args.event?.startDate.toISOString(),
     });
   }
 }

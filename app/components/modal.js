@@ -19,7 +19,7 @@ export default class ModalComponent extends Component {
         function () {
           this.args.onClose();
         },
-        200
+        200,
       ); // delay to finish leave CSS animation
     }
   }

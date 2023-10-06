@@ -44,7 +44,7 @@ export default class EventsEventController extends Controller {
     const attendance = this.store.createRecord('attendance', {
       status: CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED,
       event: this.model.event,
-      person: person
+      person: person,
     });
     await attendance.save();
     this.isOpenPersonPickerModal = false;

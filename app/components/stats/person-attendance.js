@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
-import Chart from 'chart.js/auto';
 import { keepLatestTask } from 'ember-concurrency';
 import CONSTANTS from '../../config/constants';
-import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
@@ -36,9 +34,8 @@ export default class StatsPersonAttendanceComponent extends Component {
           'filter[event][:lte:start-date]':
             this.dateFilter.untilDate?.toISOString(),
         });
-        const percentage = totalCount != 0
-          ? Math.round((presentCount / totalCount) * 100)
-          : 0;
+        const percentage =
+          totalCount != 0 ? Math.round((presentCount / totalCount) * 100) : 0;
 
         return { person, percentage };
       }),
