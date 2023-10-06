@@ -4,5 +4,5 @@ export default class GroupModel extends Model {
   @attr('string') uri;
   @attr('string') name;
 
-  @hasMany('person') members;
+  @hasMany('person', { inverse: 'groups', async: true }) members;
 }

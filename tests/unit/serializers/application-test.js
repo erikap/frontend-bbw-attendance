@@ -1,4 +1,5 @@
 import { module, test } from 'qunit';
+
 import { setupTest } from 'frontend-bbw-attendance/tests/helpers';
 
 module('Unit | Serializer | application', function (hooks) {

@@ -4,8 +4,8 @@ import CONSTANTS from '../config/constants';
 export default class AttendanceModel extends Model {
   @attr('string') status;
 
-  @belongsTo('event') event;
-  @belongsTo('person') person;
+  @belongsTo('event', { inverse: 'attendances', async: true }) event;
+  @belongsTo('person', { inverse: 'person', async: true }) person;
 
   get isPresent() {
     return this.status == CONSTANTS.ATTENDANCE_STATUSES.PRESENT;
