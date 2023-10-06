@@ -1,4 +1,4 @@
-FROM madnificent/ember:4.3.0 as builder
+FROM madnificent/ember:5.2.0 as builder
 
 LABEL maintainer="erika.pauwels@gmail.com"
 
