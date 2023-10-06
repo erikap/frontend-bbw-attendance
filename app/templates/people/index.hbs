@@ -51,7 +51,7 @@
           <button type="button"
             class="text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
             {{on "click" (fn this.archivePerson person)}}>
-            {{svg-jar "outline-trash" class="h-5 w-5"}}
+            {{svg-jar "delete-bin-line" class="h-5 w-5 fill-current"}}
           </button>
         </div>
       </li>
@@ -66,9 +66,9 @@
           class="text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
           {{on "click" this.toggleIsShownArchive}}>
           {{#if this.isShownArchive}}
-            {{svg-jar "outline-chevron-up" class="h-5 w-5"}}
+            {{svg-jar "arrow-up-s-line" class="h-5 w-5 fill-current"}}
           {{else}}
-            {{svg-jar "outline-chevron-right" class="h-5 w-5"}}
+            {{svg-jar "arrow-right-s-line" class="h-5 w-5 fill-current"}}
           {{/if}}
         </button>
       </div>
@@ -84,7 +84,7 @@
                   <button type="button"
                     class="text-gray-400 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
                     {{on "click" (fn this.restorePerson person)}}>
-                    {{svg-jar "outline-reply" class="h-5 w-5"}}
+                    {{svg-jar "arrow-go-back-line" class="h-5 w-5 fill-current"}}
                   </button>
                 </div>
               </div>

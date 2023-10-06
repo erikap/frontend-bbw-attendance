@@ -71,7 +71,7 @@
         type="button"
         class="text-gray-400 hover:text-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
         {{on "click" this.openEditMode}}>
-        {{svg-jar "outline-pencil" class="h-5 w-5"}}
+        {{svg-jar "pencil-line" class="h-5 w-5 fill-current"}}
       </button>
     </div>
   {{/if}}
@@ -86,7 +86,7 @@
           {{this.presentCount}}
         </dd>
       </div>
-      <div class="flex flex-col border-gray-100 border-l border-r p-6 text-center">
+      <div class="flex flex-col border-gray-100 border-l p-6 text-center">
         <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
           Afwezig
         </dt>
@@ -105,6 +105,13 @@
           @onDeleteAttendance={{perform this.deleteAttendance}} />
       </li>
     {{/each}}
+    <li class="py-4 sm:p-4">
+      <button>
+        <span class="text-gray-500 text-sm">
+          Muzikant toevoegen
+        </span>
+      </button>
+    </li>
   </ul>
 </div>
 

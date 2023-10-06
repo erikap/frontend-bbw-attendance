@@ -7,25 +7,25 @@
         <div>
           <button
             class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary-900 {{if this.isShownDateFilter "!bg-primary-100 !text-primary-700 -pb-8"}}" type="button" {{on "click" this.toggleDateFilter}}>
-            {{svg-jar "outline-filter" class="h-6 w-6"}}
+            {{svg-jar "filter-line" class="h-6 w-6 fill-current"}}
           </button>
         </div>
         <LinkTo @route="events"
           @activeClass="!bg-primary-100 !text-primary-700"
           class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary-900">
-          {{svg-jar "outline-calendar" class="h-6 w-6 sm:hidden"}}
+          {{svg-jar "calendar-line" class="h-6 w-6 fill-current sm:hidden"}}
           <span class="hidden sm:inline">Repetities</span>
         </LinkTo>
         <LinkTo @route="people"
           @activeClass="!bg-primary-100 !text-primary-700"
           class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary-900">
-          {{svg-jar "outline-usergroup" class="h-6 w-6 sm:hidden"}}
+          {{svg-jar "group-line" class="h-6 w-6 fill-current sm:hidden"}}
           <span class="hidden sm:inline">Muzikanten</span>
         </LinkTo>
         <LinkTo @route="stats"
           @activeClass="!bg-primary-100 !text-primary-700"
           class="text-gray-500 hover:text-gray-700 px-3 py-2 font-medium text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-primary-900">
-          {{svg-jar "outline-chart-square-bar" class="h-6 w-6 sm:hidden"}}
+          {{svg-jar "line-chart-line" class="h-6 w-6 fill-current sm:hidden"}}
           <span class="hidden sm:inline">Stats</span>
         </LinkTo>
       </nav>
