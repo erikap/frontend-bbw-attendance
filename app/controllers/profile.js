@@ -46,8 +46,8 @@ export default class ProfileController extends Controller {
       const error = yield response.json();
       console.warn(
         `Failed to change password: [${response.statusText}] ${JSON.stringify(
-          error
-        )}`
+          error,
+        )}`,
       );
       return false;
     } else {

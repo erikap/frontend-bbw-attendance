@@ -60,7 +60,7 @@ export default class StatsEventAttendanceComponent extends Component {
         }
 
         return { percentage };
-      })
+      }),
     );
 
     this.presentPercentages = percentages.map((c) => c.percentage);

@@ -39,7 +39,7 @@ export default class StatsPersonAttendanceComponent extends Component {
         const percentage = Math.round((presentCount / totalCount) * 100);
 
         return { person, percentage };
-      })
+      }),
     );
 
     const groups = {};

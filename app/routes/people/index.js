@@ -26,11 +26,11 @@ export default class PeopleIndexRoute extends Route {
 
     this.bbwGroup = await this.store.findRecordByUri(
       'group',
-      CONSTANTS.GROUPS.BBW
+      CONSTANTS.GROUPS.BBW,
     );
     this.externalGroup = await this.store.findRecordByUri(
       'group',
-      CONSTANTS.GROUPS.EXTERNAL
+      CONSTANTS.GROUPS.EXTERNAL,
     );
   }
 

@@ -36,7 +36,7 @@ export default class EventsIndexController extends Controller {
           event: event,
         });
         return attendance.save();
-      })
+      }),
     );
 
     this.router.transitionTo('events.event', event.id);

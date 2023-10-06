@@ -21,15 +21,15 @@ export default class PersonAttendanceCountComponent extends Component {
     this.presentCount = yield this.store.count('attendance', {
       'filter[person][:id:]': this.args.person.id,
       'filter[status][:uri:]': CONSTANTS.ATTENDANCE_STATUSES.PRESENT,
-      'filter[event][:gte:start-date]':
-        this.dateFilter.fromDate?.toISOString(),
-      'filter[event][:lte:start-date]': this.dateFilter.untilDate?.toISOString(),
+      'filter[event][:gte:start-date]': this.dateFilter.fromDate?.toISOString(),
+      'filter[event][:lte:start-date]':
+        this.dateFilter.untilDate?.toISOString(),
     });
     this.totalCount = yield this.store.count('attendance', {
       'filter[person][:id:]': this.args.person.id,
-      'filter[event][:gte:start-date]':
-        this.dateFilter.fromDate?.toISOString(),
-      'filter[event][:lte:start-date]': this.dateFilter.untilDate?.toISOString(),
+      'filter[event][:gte:start-date]': this.dateFilter.fromDate?.toISOString(),
+      'filter[event][:lte:start-date]':
+        this.dateFilter.untilDate?.toISOString(),
     });
   }
 }

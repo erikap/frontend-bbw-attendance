@@ -9,9 +9,9 @@ export default class PeoplePersonRoute extends Route {
     const person = await this.store.findRecord('person', params.person_id);
     const attendances = await this.store.query('attendance', {
       'filter[person][:id:]': person.id,
-      'filter[event][:gte:start-date]':
-        this.dateFilter.fromDate?.toISOString(),
-      'filter[event][:lte:start-date]': this.dateFilter.untilDate?.toISOString(),
+      'filter[event][:gte:start-date]': this.dateFilter.fromDate?.toISOString(),
+      'filter[event][:lte:start-date]':
+        this.dateFilter.untilDate?.toISOString(),
       page: {
         size: 100,
       },

@@ -33,7 +33,10 @@ export default class DateFilterService extends Service {
   }
 
   serializeToLocalStorage() {
-    const serializedConfig = JSON.stringify({ fromDate: this.fromDate, untilDate: this.untilDate });
+    const serializedConfig = JSON.stringify({
+      fromDate: this.fromDate,
+      untilDate: this.untilDate,
+    });
     localStorage.setItem(localStorageKey, serializedConfig);
   }
 
