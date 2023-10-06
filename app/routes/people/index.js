@@ -16,7 +16,7 @@ export default class PeopleIndexRoute extends Route {
   }
 
   async afterModel() {
-    this.archivedPeople = this.store.query('person', {
+    this.archivedPeople = await this.store.query('person', {
       sort: 'family-name,given-name',
       page: {
         size: 100,

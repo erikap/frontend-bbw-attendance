@@ -35,7 +35,9 @@ export default class PeopleIndexController extends Controller {
 
   @action
   async archivePerson(person) {
-    person.groups = [this.archiveGroup];
+    const groups = await person.groups;
+    groups.splice(0, groups.length);
+    groups.push(this.archiveGroup);
     await person.save();
 
     this.router.refresh();
@@ -43,7 +45,9 @@ export default class PeopleIndexController extends Controller {
 
   @action
   async restorePerson(person) {
-    person.groups = [this.defaultGroup];
+    const groups = await person.groups;
+    groups.splice(0, groups.length);
+    groups.push(this.defaultGroup);
     await person.save();
 
     this.router.refresh();
