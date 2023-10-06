@@ -1,13 +1,19 @@
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isEmpty } from '@ember/utils';
+import CONSTANTS from '../../config/constants';
 import dateAndTimeToJsDate from '../../utils/date-and-time-to-js-date';
 import jsDateToDateAndTime from '../../utils/js-date-to-date-and-time';
 
 export default class EventsEventController extends Controller {
+  @service store;
+  @service router;
+
   @tracked isEditing = false;
+  @tracked isOpenPersonPickerModal = false;
   @tracked date;
   @tracked time;
 
@@ -31,6 +37,18 @@ export default class EventsEventController extends Controller {
 
   resetDateAndTime(jsDate) {
     [this.date, this.time] = jsDateToDateAndTime(jsDate);
+  }
+
+  @action
+  async addAttendance(person) {
+    const attendance = this.store.createRecord('attendance', {
+      status: CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED,
+      event: this.model.event,
+      person: person
+    });
+    await attendance.save();
+    this.isOpenPersonPickerModal = false;
+    this.router.refresh('events.event');
   }
 
   @action
@@ -71,5 +89,15 @@ export default class EventsEventController extends Controller {
   @task
   *deleteAttendance(attendance) {
     yield attendance.destroyRecord();
+  }
+
+  @action
+  openPersonPickerModal() {
+    this.isOpenPersonPickerModal = true;
+  }
+
+  @action
+  closePersonPickerModal() {
+    this.isOpenPersonPickerModal = false;
   }
 }

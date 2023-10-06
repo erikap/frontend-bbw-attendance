@@ -106,13 +106,27 @@
       </li>
     {{/each}}
     <li class="py-4 sm:p-4">
-      <button>
-        <span class="text-gray-500 text-sm">
+      <button type="button"
+        {{on "click" this.openPersonPickerModal}}
+        class="flex flex-row space-x-3 text-gray-400 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900">
+        {{svg-jar "user-add-line" class="h-5 w-5 fill-current"}}
+        <span class="text-sm">
           Muzikant toevoegen
         </span>
       </button>
     </li>
   </ul>
 </div>
+
+{{#if this.isOpenPersonPickerModal}}
+  <Modal @onClose={{this.closePersonPickerModal}}>
+    <:body>
+    <p class="mb-4 text-gray-500 text-sm">
+      Selecteer een muzikant
+    </p>
+    <PersonPicker @event={{@model.event}} @onPick={{this.addAttendance}} />
+    </:body>
+  </Modal>
+{{/if}}
 
 {{outlet}}
