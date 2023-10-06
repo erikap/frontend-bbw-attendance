@@ -18,15 +18,15 @@ export default class EventsEventController extends Controller {
   }
 
   get presentCount() {
-    return this.model.attendances.filterBy('isPresent').length;
+    return this.model.attendances.filter((a) => a.isPresent).length;
   }
 
   get absentCount() {
-    return this.model.attendances.filterBy('isAbsent').length;
+    return this.model.attendances.filter((a) => a.isAbsent).length;
   }
 
   get unknownCount() {
-    return this.model.attendances.filterBy('isUnknown').length;
+    return this.model.attendances.filter((a) => a.isUnknown).length;
   }
 
   resetDateAndTime(jsDate) {

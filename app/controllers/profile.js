@@ -15,7 +15,7 @@ export default class ProfileController extends Controller {
       this.oldPassword,
       this.newPassword,
       this.newPasswordConfirmation,
-    ].any((v) => isEmpty(v));
+    ].some((v) => isEmpty(v));
   }
 
   @task

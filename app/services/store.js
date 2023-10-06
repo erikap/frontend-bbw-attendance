@@ -10,10 +10,7 @@ export default class ExtendedStoreService extends Store {
       query['page[size]'] = 1;
     }
     const results = await this.query(modelName, query, options);
-    if (results.length) {
-      return results.firstObject;
-    }
-    return null;
+    return results[0];
   }
 
   async count(modelName, query, options) {
@@ -27,7 +24,7 @@ export default class ExtendedStoreService extends Store {
   }
 
   findRecordByUri(modelName, uri) {
-    const cachedRecord = this.peekAll(modelName).findBy('uri', uri);
+    const cachedRecord = this.peekAll(modelName).find((r) => r.uri == uri);
     if (cachedRecord) {
       return cachedRecord;
     }
