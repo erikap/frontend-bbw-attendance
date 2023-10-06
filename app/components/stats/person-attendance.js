@@ -36,7 +36,9 @@ export default class StatsPersonAttendanceComponent extends Component {
           'filter[event][:lte:start-date]':
             this.dateFilter.untilDate?.toISOString(),
         });
-        const percentage = Math.round((presentCount / totalCount) * 100);
+        const percentage = totalCount != 0
+          ? Math.round((presentCount / totalCount) * 100)
+          : 0;
 
         return { person, percentage };
       }),
