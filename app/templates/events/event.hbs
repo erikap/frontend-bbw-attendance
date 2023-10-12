@@ -62,60 +62,76 @@
       </div>
     </form>
   {{else}}
-    <div class="flex items-center space-x-4">
-      <h1 class="flex flex-col space-y-1 sm:flex-row sm:items-baseline sm:space-x-2 text-3xl">
-        <span>{{@model.event.name}}</span>
-        <span>{{format-date @model.event.startDate "Pp"}}</span>
-      </h1>
-      <button
-        type="button"
-        class="text-gray-400 hover:text-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
-        {{on "click" this.openEditMode}}>
-        {{svg-jar "pencil-line" class="h-5 w-5 fill-current"}}
-      </button>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <h1 class="flex flex-col space-y-1 sm:flex-row sm:items-baseline sm:space-x-2 text-3xl">
+          <span>{{@model.event.name}}</span>
+          <span>{{format-date @model.event.startDate "Pp"}}</span>
+        </h1>
+        <button
+          type="button"
+          class="text-gray-400 hover:text-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900"
+          {{on "click" this.openEditMode}}>
+          {{svg-jar "pencil-line" class="h-5 w-5 fill-current"}}
+        </button>
+      </div>
+      <div>
+        <button
+          type="button"
+          class="text-gray-400 hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          disabled={{this.deleteEvent.isRunning}}
+          {{on "click" (perform this.deleteEvent)}}>
+          {{svg-jar "delete-bin-line" class="h-5 w-5 fill-current"}}
+        </button>
+      </div>
     </div>
   {{/if}}
 
-  <div class="mt-8 relative mx-auto sm:px-6 lg:px-8">
-    <dl class="rounded-lg bg-white grid grid-cols-2">
-      <div class="flex flex-col border-gray-100 border-r p-6 text-center">
-        <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
-          Aanwezig
-        </dt>
-        <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
-          {{this.presentCount}}
-        </dd>
-      </div>
-      <div class="flex flex-col border-gray-100 border-l p-6 text-center">
-        <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
-          Afwezig
-        </dt>
-        <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
-          {{this.absentCount}}
-        </dd>
-      </div>
-    </dl>
-  </div>
-
-  <ul role="list" class="mt-8 divide-y divide-gray-200">
-    {{#each @model.attendances as |attendance|}}
+  {{#if this.deleteEvent.isRunning}}
+    <div class="mt-8 flex items-center justify-center text-gray-700">
+      <Loader @label="Aan het verwijderen..." />
+    </div>
+  {{else}}
+    <div class="mt-8 relative mx-auto sm:px-6 lg:px-8">
+      <dl class="rounded-lg bg-white grid grid-cols-2">
+        <div class="flex flex-col border-gray-100 border-r p-6 text-center">
+          <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
+            Aanwezig
+          </dt>
+          <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
+            {{this.presentCount}}
+          </dd>
+        </div>
+        <div class="flex flex-col border-gray-100 border-l p-6 text-center">
+          <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
+            Afwezig
+          </dt>
+          <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
+            {{this.absentCount}}
+          </dd>
+        </div>
+      </dl>
+    </div>
+    <ul role="list" class="mt-8 divide-y divide-gray-200">
+      {{#each @model.attendances as |attendance|}}
+        <li class="py-4 sm:p-4">
+          <AttendanceToggle
+            @attendance={{attendance}}
+            @onDeleteAttendance={{perform this.deleteAttendance}} />
+        </li>
+      {{/each}}
       <li class="py-4 sm:p-4">
-        <AttendanceToggle
-          @attendance={{attendance}}
-          @onDeleteAttendance={{perform this.deleteAttendance}} />
+        <button type="button"
+          {{on "click" this.openPersonPickerModal}}
+          class="flex flex-row space-x-3 text-gray-400 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900">
+          {{svg-jar "user-add-line" class="h-5 w-5 fill-current"}}
+          <span class="text-sm">
+            Muzikant toevoegen
+          </span>
+        </button>
       </li>
-    {{/each}}
-    <li class="py-4 sm:p-4">
-      <button type="button"
-        {{on "click" this.openPersonPickerModal}}
-        class="flex flex-row space-x-3 text-gray-400 hover:text-primary-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-900">
-        {{svg-jar "user-add-line" class="h-5 w-5 fill-current"}}
-        <span class="text-sm">
-          Muzikant toevoegen
-        </span>
-      </button>
-    </li>
-  </ul>
+    </ul>
+  {{/if}}
 </div>
 
 {{#if this.isOpenPersonPickerModal}}

@@ -87,6 +87,13 @@ export default class EventsEventController extends Controller {
   }
 
   @task
+  *deleteEvent() {
+    yield Promise.all(this.model.attendances.map((a) => a.destroyRecord()));
+    yield this.model.event.destroyRecord();
+    this.router.transitionTo('events.index');
+  }
+
+  @task
   *deleteAttendance(attendance) {
     yield attendance.destroyRecord();
   }
