@@ -9,5 +9,8 @@ export default {
     ABSENT: 'http://data.bbw.craps.cloud/attendance-statuses/absent',
     UNDEFINED: 'http://data.bbw.craps.cloud/attendance-statuses/undefined',
   },
+  ATTENDANCE_CATEGORIES: {
+    TOO_LATE: 'http://data.bbw.craps.cloud/categories/too-late',
+  }
 };
 /* eslint-enable prettier/prettier */

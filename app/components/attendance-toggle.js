@@ -13,6 +13,16 @@ export default class AttendanceToggleComponent extends Component {
     await this._toggleStatus(CONSTANTS.ATTENDANCE_STATUSES.ABSENT);
   }
 
+  @action
+  async toggleTooLate() {
+    if (this.args.attendance.isTooLate) {
+      this.args.attendance.category = null;
+    } else {
+      this.args.attendance.category = CONSTANTS.ATTENDANCE_CATEGORIES.TOO_LATE;
+    }
+    await this.args.attendance.save();
+  }
+
   async _toggleStatus(status) {
     if (this.args.attendance.status == status) {
       this.args.attendance.status = CONSTANTS.ATTENDANCE_STATUSES.UNDEFINED;

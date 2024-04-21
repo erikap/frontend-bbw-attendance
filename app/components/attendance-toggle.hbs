@@ -33,5 +33,11 @@
       class="inline-flex items-center p-2 border border-transparent rounded-full text-white {{if @attendance.isAbsent "bg-red-600" "bg-gray-300"}} hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
       {{svg-jar "close-line" class="h-6 w-6 fill-current"}}
     </button>
+    <button
+      type="button"
+      {{on "click" this.toggleTooLate}}
+      class="inline-flex items-center p-2 border border-transparent rounded-full text-white {{if @attendance.isTooLate "bg-cyan-600" "bg-gray-300"}} hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+      {{svg-jar "timer-line" class="h-6 w-6 fill-current"}}
+    </button>
   </div>
 </div>
