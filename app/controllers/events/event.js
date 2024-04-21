@@ -35,6 +35,10 @@ export default class EventsEventController extends Controller {
     return this.model.attendances.filter((a) => a.isUnknown).length;
   }
 
+  get tooLateCount() {
+    return this.model.attendances.filter((a) => a.isTooLate).length;
+  }
+
   resetDateAndTime(jsDate) {
     [this.date, this.time] = jsDateToDateAndTime(jsDate);
   }

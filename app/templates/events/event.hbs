@@ -93,7 +93,7 @@
     </div>
   {{else}}
     <div class="mt-8 relative mx-auto sm:px-6 lg:px-8">
-      <dl class="rounded-lg bg-white grid grid-cols-2">
+      <dl class="rounded-lg bg-white grid grid-cols-3">
         <div class="flex flex-col border-gray-100 border-r p-6 text-center">
           <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
             Aanwezig
@@ -102,12 +102,20 @@
             {{this.presentCount}}
           </dd>
         </div>
-        <div class="flex flex-col border-gray-100 border-l p-6 text-center">
+        <div class="flex flex-col border-gray-100 border-l border-r p-6 text-center">
           <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
             Afwezig
           </dt>
           <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
             {{this.absentCount}}
+          </dd>
+        </div>
+        <div class="flex flex-col border-gray-100 border-l p-6 text-center">
+          <dt class="order-2 mt-2 text-sm sm:text-base font-medium text-gray-500">
+            Te laat
+          </dt>
+          <dd class="order-1 text-3xl sm:text-4xl font-extrabold text-primary-900">
+            {{this.tooLateCount}}
           </dd>
         </div>
       </dl>

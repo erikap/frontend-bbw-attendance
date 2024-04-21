@@ -26,6 +26,14 @@ export default class PeoplePersonController extends Controller {
     return Math.round((this.presentCount / this.totalCount) * 100);
   }
 
+  get tooLateCount() {
+    return this.model.attendances.filter((a) => a.isTooLate).length;
+  }
+
+  get tooLatePercentage() {
+    return Math.round((this.tooLateCount / this.totalCount) * 100);
+  }
+
   @action
   async updatePerson(e) {
     e.preventDefault();
