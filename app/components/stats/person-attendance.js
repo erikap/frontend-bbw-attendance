@@ -27,6 +27,14 @@ export default class StatsPersonAttendanceComponent extends Component {
           'filter[event][:lte:start-date]':
             this.dateFilter.untilDate?.toISOString(),
         });
+        const tooLateCount = await this.store.count('attendance', {
+          'filter[person][:id:]': person.id,
+          'filter[category][:uri:]': CONSTANTS.ATTENDANCE_CATEGORIES.TOO_LATE,
+          'filter[event][:gte:start-date]':
+            this.dateFilter.fromDate?.toISOString(),
+          'filter[event][:lte:start-date]':
+            this.dateFilter.untilDate?.toISOString(),
+        });
         const totalCount = await this.store.count('attendance', {
           'filter[person][:id:]': person.id,
           'filter[event][:gte:start-date]':
@@ -34,22 +42,29 @@ export default class StatsPersonAttendanceComponent extends Component {
           'filter[event][:lte:start-date]':
             this.dateFilter.untilDate?.toISOString(),
         });
-        const percentage =
-          totalCount != 0 ? Math.round((presentCount / totalCount) * 100) : 0;
+        const presentPercentage =
+              totalCount != 0 ? Math.round((presentCount / totalCount) * 100) : 0;
+        const tooLatePercentage =
+              totalCount != 0 ? Math.round((tooLateCount / totalCount) * 100) : 0;
 
-        return { person, percentage };
+        return { person, presentPercentage, tooLatePercentage };
       }),
     );
 
     const groups = {};
     stats.forEach((stat) => {
-      const group = groups[`${stat.percentage}`];
+      const group = groups[`${stat.presentPercentage}`];
+      const item = {
+        record: stat.person,
+        present: stat.presentPercentage,
+        tooLate: stat.tooLatePercentage
+      };
       if (group) {
-        group.people.push(stat.person);
+        group.people.push(item);
       } else {
-        groups[`${stat.percentage}`] = {
-          percentage: stat.percentage,
-          people: [stat.person],
+        groups[`${stat.presentPercentage}`] = {
+          percentage: stat.presentPercentage,
+          people: [item],
         };
       }
     });

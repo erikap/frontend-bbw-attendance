@@ -10,10 +10,11 @@
           {{group.percentage}} %
         </div>
         <ul class="col-span-2 sm:col-span-3 mt-2 p-4 border-t-2 border-primary-900">
-          {{#each (sort-by "familyName" group.people) as |person|}}
+          {{#each (sort-by "record.familyName" group.people) as |person|}}
             <li class="text-base text-gray-900">
-              <LinkTo @route="people.person" @model={{person.id}}>
-                {{person.fullName}}
+              <LinkTo @route="people.person" @model={{person.record.id}}>
+                {{person.record.fullName}}
+                {{#if person.tooLate}}({{person.tooLate}}% te laat){{/if}}
               </LinkTo>
             </li>
           {{/each}}
