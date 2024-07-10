@@ -45,7 +45,7 @@ export default class StatsPersonAttendanceComponent extends Component {
         const presentPercentage =
               totalCount != 0 ? Math.round((presentCount / totalCount) * 100) : 0;
         const tooLatePercentage =
-              totalCount != 0 ? Math.round((tooLateCount / totalCount) * 100) : 0;
+              totalCount != 0 ? Math.round((tooLateCount / presentCount) * 100) : 0;
 
         return { person, presentPercentage, tooLatePercentage };
       }),

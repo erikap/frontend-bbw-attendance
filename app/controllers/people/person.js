@@ -31,7 +31,7 @@ export default class PeoplePersonController extends Controller {
   }
 
   get tooLatePercentage() {
-    return Math.round((this.tooLateCount / this.totalCount) * 100);
+    return Math.round((this.tooLateCount / this.presentCount) * 100);
   }
 
   @action
